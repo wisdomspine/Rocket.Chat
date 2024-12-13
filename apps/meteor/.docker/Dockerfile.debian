@@ -1,4 +1,4 @@
-ARG DENO_VERSION="1.37.1"
+ARG DENO_VERSION="2.1.1"
 
 FROM denoland/deno:bin-${DENO_VERSION} as deno
 
@@ -35,6 +35,9 @@ RUN aptMark="$(apt-mark showmanual)" \
 
 USER rocketchat
 
+RUN cd /app \
+    && ls -al
+    
 RUN cd /app/bundle/programs/server \
     && npm install \
     && cd npm/node_modules/isolated-vm \
